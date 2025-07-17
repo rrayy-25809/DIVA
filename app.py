@@ -20,8 +20,8 @@ except Exception as e:
     sys.exit(1)
 
 # 서버 실행
-if hasattr(server, "flask"):
-    server.flask.run(debug=True, host="0.0.0.0")
+if hasattr(server, "app"):
+    server.app.run(debug=True, host="0.0.0.0")
 else:
     print("❌ server.main에 flask 객체가 없습니다!")
     sys.exit(1)
