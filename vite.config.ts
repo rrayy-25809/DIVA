@@ -4,7 +4,7 @@ import { readdirSync } from "fs";
 
 const pagesDir = resolve(__dirname, 'client');
 const htmlFiles = readdirSync(pagesDir).filter(file => file.endsWith('.html'));
-const input = htmlFiles.reduce((acc, file) => {
+const input = htmlFiles.reduce<Record<string, string>>((acc, file) => {
     const name = file.replace('.html', '');
     acc[name] = resolve(pagesDir, file);
     return acc;
