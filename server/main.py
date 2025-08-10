@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS
+from langchain.agents import create_tool_calling_agent
+from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-from langchain_openai import OpenAI
-import langchain
+from flask_cors import CORS
+from tools import test
 import os
 
 # 기본 변수 설정
@@ -25,8 +26,6 @@ def serve(path):
 @app.route('/generate', methods=['POST'])
 def generate_response():
     prompt = request.form.get('prompt', '')
-    vocal = request.files.get('vocal')
-    if vocal:   # 기타 파일은 클라이언트 단에 맡기기
-        Exception("보컬 파일은 아직 지원하지 않습니다.")
+    tool_list = [test.search_news, test.python_repl_tool]
 
     return ":", 200
