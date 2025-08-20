@@ -1,0 +1,1 @@
+from tools.test import search_news, python_repl_tool
