@@ -3,7 +3,6 @@ from langchain_teddynote.tools import GoogleNews
 from typing import List, Dict, Annotated
 from langchain.tools import tool
 
-
 # 도구 생성
 @tool
 def search_news(query: str) -> List[Dict[str, str]]:
