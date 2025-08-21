@@ -19,12 +19,12 @@ def get_agent(api_key:str, tool_list:list):
 
 def get_formatted_prompt(prompt: str):
     goal_prompt = PromptTemplate(
-        input_variables=["goal"],
+        input_variables=["prompt"],
         template="""
-        너는 사용자의 목표를 달성하기 위해 도구와 지식을 활용하는 지능형 에이전트야.
-        목표: {goal}
-
+        너는 스스로 작곡을 할 수 있는 AI Agent, DIVA야. 아래 요구 사항을 바탕으로 Future Bounce 장르를 작곡해야 해
         주어진 목표를 달성하기 위해 필요한 단계들을 계획하고, 필요한 경우 도구를 호출하여 결과를 도출해라.
+        
+        요구 사항: {prompt}
         """
     )
 

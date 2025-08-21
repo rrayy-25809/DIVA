@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from tools import search_news, python_repl_tool
+from server.tools import search_news
 from agent import get_agent, get_formatted_prompt
 from dotenv import load_dotenv
 from flask_cors import CORS
@@ -7,8 +7,8 @@ import os
 
 load_dotenv()
 
-api_key = os.getenv("OPENAI_API_KEY")
-agent = get_agent(api_key, [search_news, python_repl_tool])
+api_key:str = os.getenv("OPENAI_API_KEY") # type: ignore
+agent = get_agent(api_key, [search_news])
 
 app = Flask(__name__, template_folder='../dist/client', static_folder='../dist/assets')
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
