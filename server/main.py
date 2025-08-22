@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from server.tools import get_tools
-from agent import get_agent, get_formatted_prompt
+from server.agent import get_agent, get_formatted_prompt
 from dotenv import load_dotenv
 from flask_cors import CORS
 import os

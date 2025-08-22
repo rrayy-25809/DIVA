@@ -2,7 +2,6 @@ from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain.agents import initialize_agent, AgentType
 
-
 def get_agent(api_key:str, tool_list:list):
     llm = ChatOpenAI(model="gpt-4o-mini", api_key=api_key) # type: ignore
 
