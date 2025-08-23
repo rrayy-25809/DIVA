@@ -137,7 +137,6 @@ tiktoken==0.11.0
 torch==2.7.1+cu128
 torchaudio==2.7.1+cu128
 torchvision==0.22.1+cu128
-tornado==6.4.2
 tqdm==4.67.1
 traitlets @ file:///home/conda/feedstock_root/build_artifacts/traitlets_1733367359838/work
 twine==6.1.0
