@@ -13,7 +13,7 @@ model = ChatOpenAI(model="gpt-4o-mini", api_key=GPT_api) # type: ignore
 
 # 자료구조 정의 (pydantic)
 class song_structure(BaseModel):
-    name: str = Field(description="name of a song that you make structure of")
+    name: str = Field(description="name of a song that you make structure of, ex) 'Ruin', 'Dreamy'")
     Intro: Dict[str, int | Dict[str, str]] = Field(
         description="Intro part of the song",
         default={"length": 8, "instruments": {"chord":"Piano", "bass":"Reese Bass"}}

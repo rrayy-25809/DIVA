@@ -23,10 +23,12 @@ def serve(path):
 
 @app.route('/generate', methods=['POST'])
 def generate_response():
-    prompt = request.form.get('prompt', '')
+    prompt = request.form.get('prompt', '') # 어두운 느낌의 퓨처 바운스를 원해
+    print(f"Received prompt: {prompt}")  # 디버깅용 로그
 
     try:
-        result = agent.invoke({"input": get_formatted_prompt(prompt)})
+        result = agent.invoke({"input": get_formatted_prompt(prompt, get_tools())})
         return jsonify({"output": result["output"]})
     except Exception as e:
+        print(f"Error during agent invocation: {e}")
         return jsonify({"error": str(e)}), 500

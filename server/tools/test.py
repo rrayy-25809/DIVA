@@ -1,5 +1,5 @@
 from langchain_teddynote.tools import GoogleNews
-from typing import List, Dict, Annotated
+from typing import List, Dict
 from langchain.tools import tool
 
 # 도구 생성
