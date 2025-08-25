@@ -112,7 +112,6 @@ mypy-extensions==1.0.0
 nbclient==0.10.2
 nbconvert==7.16.6
 nbformat==5.10.4
-nest_asyncio @ file:///home/conda/feedstock_root/build_artifacts/nest-asyncio_1733325553580/work
 networkx==3.3
 nh3==0.3.0
 nltk==3.9.1
@@ -136,7 +135,6 @@ pinecone-plugin-interface==0.0.7
 pinecone-text==0.11.0
 platformdirs==4.3.6
 prometheus_client==0.22.1
-prompt_toolkit @ file:///home/conda/feedstock_root/build_artifacts/prompt-toolkit_1744724089886/work
 psutil==7.0.0
 pure_eval==0.2.3
 pychord==1.2.2
