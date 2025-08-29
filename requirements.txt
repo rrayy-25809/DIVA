@@ -41,7 +41,7 @@ fqdn==1.5.1
 fsspec==2025.3.0
 greenlet==3.2.4
 h11==0.16.0
-harmony-midi-token==0.4.0
+harmony-midi-token==1.0.0
 httpcore==1.0.9
 httpx==0.28.1
 huggingface-hub==0.32.4
@@ -202,3 +202,6 @@ widgetsnbextension==4.0.14
 xxhash==3.5.0
 zipp==3.20.2
 zstandard==0.23.0
+llvmlite==0.44.0
+numba==0.61.2
+pysdtw==0.0.5

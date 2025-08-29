@@ -2,14 +2,35 @@ from typing import List, Dict
 from langchain.tools import tool
 from HarmonyMIDIToken import HarmonyMIDIToken as Tokenizer
 from music21.stream.base import Score
+from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
+from sklearn.compose import ColumnTransformer
+import pandas as pd
+import torch
 import json
+
+def data_to_tensor(data:pd.DataFrame):
+    # 전처리 파이프라인
+    preprocessor = ColumnTransformer([
+        ("cat", OneHotEncoder(sparse_output=False), ["mode", "mood", "key"]),
+        ("num", MinMaxScaler(), ["bpm", "chord_complexity", "melody_density", "syncopation", "pitch_range"])
+    ])
+
+    X = preprocessor.transform(data)
+
+    return torch.tensor(X, dtype=torch.float32)
 
 @tool
 def generate_midi_data(vector: str) -> Dict[str, int|List[Dict[str, str | float]]]:
     """Generate MIDI data as JSON form Dictionary based on the input style vector."""
-    data = '{"BPM": 128, "Melody": [{"note": "E6", "duration": 0.6666666666666666}, {"note": "", "duration": -0.16666666666666663}, {"note": "D6", "duration": 0.25}], "Chord": [{"chord": "CM7", "duration": 0.6666666666666666}, {"chord": "", "duration": -0.16666666666666663}, {"chord": "CM7", "duration": 0.25}], "Bass": [{"note": "C3", "duration": 0.6666666666666666}, {"note": "", "duration": 0.33333333333333337}, {"note": "C3", "duration": 0.25}]}'
+    device = torch.device('cuda')
 
-    return json.loads(data)
+    model = torch.load('model/DIVA_Model_full.pt', map_location=device)
+    data = pd.DataFrame([json.loads(vector)])
+    X = data_to_tensor(data).to(device)
+    
+    model.generate(X[0], device=device)
+
+    return 
 
 @tool
 def get_melody(midi_data: List[Dict[str, str | float]]) -> Score:
