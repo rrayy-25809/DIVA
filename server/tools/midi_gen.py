@@ -6,7 +6,27 @@ from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from sklearn.compose import ColumnTransformer
 import pandas as pd
 import torch
+import io
+import requests
 import json
+
+def get_model():
+    # .pt 파일 경로 - 모델 경로에 따라 수정 필요
+    url = "https://huggingface.co/<username>/<repo>/resolve/main/your_model.pt"
+
+    # 인증이 필요한 경우
+    # headers = {"Authorization": f"Bearer hf_your_token"}
+    # response = requests.get(url, headers=headers)
+
+    # 공개 모델이면 헤더 없이 가능
+    response = requests.get(url)
+
+    # 메모리 버퍼로 읽기
+    buffer = io.BytesIO(response.content)
+
+    # 모델 로드 - 저장 방식에 따라 아래 중 하나 사용
+    # 1. 전체 모델이 저장된 경우
+    model = torch.load(buffer, map_location='cpu')
 
 def data_to_tensor(data:pd.DataFrame):
     # 전처리 파이프라인
